@@ -110,24 +110,18 @@ export default class Form extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    var dateOfBirth = this.state.dateOfBirth;
-    var gender = this.state.gender;
-    var arrivalDate = this.state.arrivalDate;
-    var addressLine1 = this.state.addressLine1;
-    var addressLine2 = this.state.addressLine2;
-    var addressCity =  this.state.addressCity;
-    var addressState = this.state.addressState;
-    var addressZip = this.state.addressZip;
-    var originCountry = this.state.originCountry;
-    var services = this.state.services;
-    var orgs = this.state.organizations;
+    var assets = {
+      dateOfBirth: this.state.dateOfBirth,
+      gender: this.state.gender,
+      arrivalDate: this.state.arrivalDate,
+      addressLine1: this.state.addressLine1,
+      addressLine2: this.state.addressLine2,
+      addressCity:  this.state.addressCity,
+      addressState: this.state.addressState,
+      addressZip: this.state.addressZip,
+      originCountry: this.state.originCountry,
+    }
 
-    alert("These are the values: \n" + dateOfBirth + "\n" + gender + "\n" +
-      arrivalDate + "\n" + addressLine1 + "\n" + addressLine2 + "\n" +
-      addressCity + "\n" + addressState + "\n" + addressZip + "\n" +
-      originCountry + "\n" + services + "\n" + orgs);
-
-      //this.reset();
   };
 
   reset() {
@@ -262,6 +256,7 @@ export default class Form extends React.Component {
           />
         </div>
       </form>
+
     );
   }
 }
