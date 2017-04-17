@@ -9,7 +9,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import SelectCountry from './SelectCountry.js';
 import CheckboxDialog from './CheckboxDialog.js';
-import Services from './Services.js';
 
 
 const styles = {
@@ -122,6 +121,7 @@ export default class Form extends React.Component {
       originCountry: this.state.originCountry,
     }
 
+    this.props.onSubmit(assets);
   };
 
   reset() {

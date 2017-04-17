@@ -7,7 +7,7 @@ import lightBlue300 from 'material-ui/styles/colors';
 const styles = {
   icons: {
     color: lightBlue300,
-    height: 2,
+    height: 1.5,
     marginRight: 2,
   },
   imgLogo: {
@@ -16,17 +16,23 @@ const styles = {
   card: {
     margin: 5,
   },
+  header: {
+    borderBottom: "1px solid #E0E0E0",
+    paddingTop: 30,
+    paddingBottom: 5,
+    margin: "3%",
+  },
+
 };
 
-export default class Services extends React.Component {
+export default class Results extends React.Component {
 
   constructor(props) {
     super(props);
   }
   render() {
     const ServicesCards = []
-
-    for (let i = 2; i < 8; i++) {
+    for (let i = 0; i < 3; i++) {
       ServicesCards.push(
         <Card key={i} style={styles.card}>
           <CardHeader
@@ -55,33 +61,9 @@ export default class Services extends React.Component {
     };
 
     return (
-      <orgs>
-        <div>
-          <Card style={styles.card}>
-            <CardHeader
-              title={<img src="../assets/images/cws_horizontal.png" style={styles.imgLogo}/>}
-              subtitle="CWS Immigration & Refugee Program"
-              actAsExpander={true}
-              showExpandableButton={true}
-            />
-            <CardText expandable={true}>
-              <p>They offer legal, employment, and support group services</p>
-
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>phone</FontIcon>
-                (717) 381 - 2890
-              </p>
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>language</FontIcon>
-                <a href="https://cwsglobal.org/">cwsglobal.org</a>
-              </p>
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>room</FontIcon>
-                308 East King St, PO Box 1676, Lancaster, PA 17602-5013
-              </p>
-            </CardText>
-          </Card>
-
+      <div>
+        <div className="education">
+          <h2 style={styles.header}>Education</h2>
           <Card style={styles.card}>
             <CardHeader
               title={<img src="../assets/images/emm_horizontal.png" style={styles.imgLogo}/>}
@@ -110,9 +92,42 @@ export default class Services extends React.Component {
               </p>
             </CardText>
           </Card>
-          {OrgCards}
+          {ServicesCards}
         </div>
-      </orgs>
+        <div className="employment">
+          <h2 style={styles.header}>Employment</h2>
+          <Card style={styles.card}>
+            <CardHeader
+              title={<img src="../assets/images/cws_horizontal.png" style={styles.imgLogo}/>}
+              subtitle="CWS Immigration & Refugee Program"
+              actAsExpander={true}
+              showExpandableButton={true}
+            />
+            <CardText expandable={true}>
+              <p>Provides assistance & placements.</p>
+              <p>Offices are open Monday through Friday</p>
+
+              <p>
+                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>phone</FontIcon>
+                (717) 381 - 2890
+              </p>
+              <p>
+                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>language</FontIcon>
+                <a href="https://cwsglobal.org/">cwsglobal.org/employment</a>
+              </p>
+              <p>
+                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>room</FontIcon>
+                308 East King St, PO Box 1676, Lancaster, PA 17602-5013
+              </p>
+            </CardText>
+          </Card>
+          {ServicesCards}
+        </div>
+        <div className="child_services">
+          <h2 style={styles.header}>Child Services</h2>
+          {ServicesCards}
+        </div>
+      </div>
     );
   }
 }

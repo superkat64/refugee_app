@@ -16,6 +16,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 
 import Form from './Form.js';
 import AllOrgs from './AllOrgs.js'
+import Results from './Results.js';
 
 
 const styles = {
@@ -44,9 +45,11 @@ class Main extends Component {
 
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       open: false,
+      showResults: false,
     };
   }
 
@@ -62,6 +65,14 @@ class Main extends Component {
     });
   }
 
+  handleSubmit(assets) {
+    this.setState({
+      showResults: true,
+    });
+
+    alert(assets);
+  }
+
   render() {
     const standardActions = (
       <FlatButton
@@ -70,6 +81,19 @@ class Main extends Component {
         onTouchTap={this.handleRequestClose}
       />
     );
+
+    let services = null;
+    if (this.state.showResults == true) {
+      services = (
+        <Results />
+      );
+    } else if (this.state.showResults == false) {
+      services = (
+        <Form
+          onSubmit= {this.handleSubmit}
+        />
+      );
+    }
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -85,7 +109,7 @@ class Main extends Component {
           <Tabs>
             <Tab label="Form">
               <div>
-                <Form />
+                {services}
               </div>
             </Tab>
             <Tab label="Organizations">
