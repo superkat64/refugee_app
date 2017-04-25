@@ -29,23 +29,38 @@ export default class Results extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      services: [],
+    }
   }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log("Component will update");
+    console.log(nextState);
+    console.log(nextProps);
+  }
+
   render() {
-    const ServicesCards = []
-    for (let i = 0; i < 3; i++) {
+    const ServicesCards = [];
+    console.log("the services should be " + this.props.services);
+    var servicesArr = this.props.services;
+
+    for (let i = 0; i < servicesArr.length; i++) {
+      console.log(servicesArr[i]);
       ServicesCards.push(
         <Card key={i} style={styles.card}>
           <CardHeader
             title={<img src="../assets/images/literacy_horizontal.png" style={styles.imgLogo}/>}
-            subtitle={`Organization ${i + 1}`}
+            subtitle={servicesArr[i].serviceName}
             actAsExpander={true}
             showExpandableButton={true}
           />
           <CardText expandable={true}>
-          <p>They offer services in: this, this, and this...</p>
+          <p>{servicesArr[i]["serviceDict"].description}</p>
           <p>
             <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>phone</FontIcon>
-            (123) 456 - 7890
+            {servicesArr[i]["serviceDict"]["contact"].phone}
           </p>
           <p>
             <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>language</FontIcon>
@@ -53,7 +68,7 @@ export default class Results extends React.Component {
           </p>
           <p>
             <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>room</FontIcon>
-            123 Some Street, Newtown PA, 19403
+            {servicesArr[i]["serviceDict"]["address"]["street1"]} {servicesArr[i]["serviceDict"]["address"]["cityState"]}
           </p>
           </CardText>
         </Card>
@@ -63,70 +78,9 @@ export default class Results extends React.Component {
     return (
       <div>
         <div className="education">
-          <h2 style={styles.header}>Education</h2>
-          <Card style={styles.card}>
-            <CardHeader
-              title={<img src="../assets/images/emm_horizontal.png" style={styles.imgLogo}/>}
-              subtitle="Eastern Mennonite Missions"
-              actAsExpander={true}
-              showExpandableButton={true}
-            />
-            <CardText expandable={true}>
-              <p>Services: </p>
-              <ul>
-                <li>Mobilizes service-oriented volunteers from local faith communities to respond to refugee needs</li>
-                <li>Provides cross-cultural training and coaching for volunteers</li>
-                <li>Facilitates cultural awareness opportunities for churches, youth groups, and the community</li>
-              </ul>
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>phone</FontIcon>
-                (717) 898 - 2251
-              </p>
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>language</FontIcon>
-                <a href="https://www.emm.org/">www.emm.org</a>
-              </p>
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>room</FontIcon>
-                53 West Brandt Blvd, PO Box 458, Salunga, PA 17538 - 0458
-              </p>
-            </CardText>
-          </Card>
           {ServicesCards}
         </div>
-        <div className="employment">
-          <h2 style={styles.header}>Employment</h2>
-          <Card style={styles.card}>
-            <CardHeader
-              title={<img src="../assets/images/cws_horizontal.png" style={styles.imgLogo}/>}
-              subtitle="CWS Immigration & Refugee Program"
-              actAsExpander={true}
-              showExpandableButton={true}
-            />
-            <CardText expandable={true}>
-              <p>Provides assistance & placements.</p>
-              <p>Offices are open Monday through Friday</p>
-
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>phone</FontIcon>
-                (717) 381 - 2890
-              </p>
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>language</FontIcon>
-                <a href="https://cwsglobal.org/">cwsglobal.org/employment</a>
-              </p>
-              <p>
-                <FontIcon className="material-icons" style={styles.icons} color={lightBlue300}>room</FontIcon>
-                308 East King St, PO Box 1676, Lancaster, PA 17602-5013
-              </p>
-            </CardText>
-          </Card>
-          {ServicesCards}
-        </div>
-        <div className="child_services">
-          <h2 style={styles.header}>Child Services</h2>
-          {ServicesCards}
-        </div>
+      
       </div>
     );
   }
